@@ -1,26 +1,24 @@
 {% set name = "dj-static" %}
 {% set version = "0.0.6" %}
-{% set build = 3 %}
-{% set md5 = "078c4d5a455b7811173ffdb0cb33ed0f" %}
 
 package:
-    name: {{ name }}
-    version: {{ version }}
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-    fn: {{ name }}-{{ version }}.tar.gz
-    url: https://pypi.python.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    md5: {{ md5 }}
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/dj-static-{{ version }}.tar.gz
+  sha256: 032ec1c532617922e6e3e956d504a6fb1acce4fc1c7c94612d0fda21828ce8ef
 
 build:
-    number: {{ build }}
-    script: python setup.py install --single-version-externally-managed --record record.txt
-    noarch: python
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 3
 
 requirements:
     host:
         - python {{ python_min }}
         - setuptools
+        - pip
         - static
     run:
         - python >={{ python_min }}
