@@ -15,29 +15,30 @@ build:
   number: 3
 
 requirements:
-    host:
-        - python {{ python_min }}
-        - setuptools
-        - pip
-        - static
-    run:
-        - python >={{ python_min }}
-        - static
+  host:
+    - python {{ python_min }}
+    - setuptools
+    - pip
+    - static
+  run:
+    - python >={{ python_min }}
+    - static
 
 test:
-    requires:
-        - django
-        - python {{ python_min }}
-    commands:
-        - python -c "import django; from django.conf import settings; settings.configure(); django.setup(); import dj_static"
+  requires:
+    - django
+    - python {{ python_min }}
+  commands:
+    - python -c "import django; from django.conf import settings; settings.configure(); django.setup(); import dj_static"
 
 about:
-    home: https://github.com/kennethreitz/dj-static
-    license: BSD-2-Clause
-    license_family: BSD
-    summary: 'Serve production static files with Django.'
+  home: https://github.com/kennethreitz/dj-static
+  license: BSD-2-Clause
+  license_family: BSD
+  summary: 'Serve production static files with Django.'
+  license_file: LICENSE
 
 extra:
-    recipe-maintainers:
-        - kwilcox
-        - xmnlab
+  recipe-maintainers:
+    - kwilcox
+    - xmnlab
